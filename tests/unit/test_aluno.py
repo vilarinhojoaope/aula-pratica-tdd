@@ -37,6 +37,10 @@ def test_situacao_aprovado(aluno_aprovado):
 def test_situacao_reprovado(aluno_reprovado):
     assert aluno_reprovado.situacao() == "Reprovado"
 
+def test_situacao_aprovado_6():
+    aluno = Aluno("Lucas", [6.0, 6.0, 6.0, 6.0])
+    assert aluno.situacao() == "Aprovado"
+
 def test_maior_nota_9():
     aluno = Aluno("Bia", [5.0, 9.0, 7.0, 3.0])
     assert aluno.maior_nota() == 9.0
