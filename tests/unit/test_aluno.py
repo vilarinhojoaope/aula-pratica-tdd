@@ -49,4 +49,12 @@ def test_menor_nota():
     aluno = Aluno("Bia", [5.0, 1.0, 7.0, 3.0])
     assert aluno.menor_nota() == 1.0 
 
+def test_media_arredondada_teto():
+    aluno = Aluno("Ekko", [10, 10, 9.8, 9.4])
+    assert aluno.calcular_media_arredondada() == 10
+
+def test_media_arredondada_piso():
+    aluno = Aluno("Bolsonaro",[1, 1, 2, 1.88] )
+    assert aluno.calcular_media_arredondada() == 1
+ 
 
