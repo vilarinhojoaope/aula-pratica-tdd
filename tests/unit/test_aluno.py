@@ -27,7 +27,26 @@ from aluno.aluno import Aluno
 # Use MagicMock para simular o serviço de e-mail
 # Escreva os testes ANTES de implementar o método
 
-def test_media_5_notas():
+def test_calcular_media_5_notas():
     aluno = Aluno("Ana", [8.0, 6.0, 7.0, 9.0,10])
     assert aluno.calcular_media() == 8.0
+    
+def test_situacao_aprovado(aluno_aprovado):
+    assert aluno_aprovado.situacao() == "Aprovado"
+
+def test_situacao_reprovado(aluno_reprovado):
+    assert aluno_reprovado.situacao() == "Reprovado"
+
+def test_maior_nota_9():
+    aluno = Aluno("Bia", [5.0, 9.0, 7.0, 3.0])
+    assert aluno.maior_nota() == 9.0
+
+def test_maior_nota_7():
+    aluno = Aluno("Bia", [5.0, 1.0, 7.0, 3.0])
+    assert aluno.maior_nota() == 7.0 
+
+def test_menor_nota():
+    aluno = Aluno("Bia", [5.0, 1.0, 7.0, 3.0])
+    assert aluno.menor_nota() == 1.0 
+
 
