@@ -3,29 +3,7 @@ from unittest.mock import MagicMock
 from aluno.aluno import Aluno
 from aluno.aluno import contador_aprovados
 
-# =============================================================
-# PARTE 1 — Encontre os bugs
-# Escreva um teste para cada bug descrito no guia da atividade.
-# =============================================================
 
-#
-
-# =============================================================
-# PARTE 2 — Implemente com TDD
-# Siga o ciclo: 🔴 escreva o teste → 🟢 implemente → 🟡 refatore
-# =============================================================
-
-# Requisito 1 — contar_aprovados(lista_de_alunos) -> int
-# Escreva os testes ANTES de implementar a função
-
-
-# Requisito 2 — situacao_final(total_aulas) -> str
-# Escreva os testes ANTES de implementar o método
-
-
-# Requisito 3 — enviar_boletim(email_service)
-# Use MagicMock para simular o serviço de e-mail
-# Escreva os testes ANTES de implementar o método
 
 def test_calcular_media_5_notas():
     aluno = Aluno("Ana", [8.0, 6.0, 7.0, 9.0,10])
@@ -84,4 +62,24 @@ def test_contar_aprovados_e_reprovados():
 def test_contar_aprovados_vazio():
     assert contador_aprovados([]) == 0
  
+##testes reprovacao por falta
 
+def test_situacao_final_reprovado_por_falta():
+    maria = Aluno("Maria", notas=[8, 9, 7, 8], faltas=8) 
+    assert maria.situacao_final(total_aulas=20) == "Reprovado por falta"
+
+def test_situacao_final_aprovado():
+    maria = Aluno("Maria", notas=[8, 9, 7, 8], faltas=2) 
+    assert maria.situacao_final(total_aulas=40) == "Aprovado"
+
+def test_situacao_final_reprovado_por_nota():
+    joao = Aluno("João", notas=[4, 3, 5, 4], faltas=2) 
+    assert joao.situacao_final(total_aulas=40) == "Reprovado por nota"
+
+def test_situacao_final_exatamente_25_porcento():
+    joao = Aluno("João", notas=[4, 3, 5, 4], faltas=2) 
+    assert joao.situacao_final(total_aulas=8) == "Reprovado por nota"
+
+def test_situacao_final_pouco_acima_25_porcento():
+    maria = Aluno("Maria", notas=[8, 9, 7, 8], faltas=2)
+    assert maria.situacao_final(total_aulas=7) == "Reprovado por falta"
