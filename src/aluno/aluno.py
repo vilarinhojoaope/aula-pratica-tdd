@@ -20,3 +20,5 @@ class Aluno:
 
     def calcular_media_arredondada(self) -> float:
         return round(sum(self.notas) / len(self.notas))
+
+

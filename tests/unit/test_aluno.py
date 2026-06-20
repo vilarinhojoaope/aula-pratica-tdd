@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import MagicMock
 from aluno.aluno import Aluno
-
+from aluno.aluno import contador_aprovados
 
 # =============================================================
 # PARTE 1 — Encontre os bugs
@@ -60,5 +60,13 @@ def test_media_arredondada_teto():
 def test_media_arredondada_piso():
     aluno = Aluno("Bolsonaro",[1, 1, 2, 1.88] )
     assert aluno.calcular_media_arredondada() == 1
+
+def test_contar_aprovados(aluno_aprovado):
+    lucas = Aluno("Lucas", [6.0, 6.0, 6.0, 6.0]) #aprovado
+    ekko = Aluno("Ekko", [6.0, 5.0, 8.0, 10.0]) #aprovado
+    maria = Aluno("Lucas", [6.0, 1.0, 6.0, 3.0]) #reprovado
+
+    alunos = [lucas,ekko,maria]
+    assert contador_aprovados(alunos) == 2
  
 
