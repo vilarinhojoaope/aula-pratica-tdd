@@ -83,3 +83,15 @@ def test_situacao_final_exatamente_25_porcento():
 def test_situacao_final_pouco_acima_25_porcento():
     maria = Aluno("Maria", notas=[8, 9, 7, 8], faltas=2)
     assert maria.situacao_final(total_aulas=7) == "Reprovado por falta"
+
+def test_enviar_boletim_reprovado():
+    ekko = Aluno("Ekko", notas=[4, 3, 5, 4], faltas=2) #reprovado
+    email_service = MagicMock()
+    ekko.enviar_boletim(email_service)
+    email_service.enviar.assert_called_once_with("Ekko", 4.0)
+
+def test_enviar_boletim_aprovado():
+    maria = Aluno("Maria", notas=[8, 9, 7, 8], faltas=2) #aprovado
+    email_service = MagicMock()
+    maria.enviar_boletim(email_service)
+    email_service.enviar.assert_not_called()

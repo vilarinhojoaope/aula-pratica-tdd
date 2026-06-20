@@ -27,6 +27,7 @@ class Aluno:
         if self.calcular_media() >= 6.0:
             return "Aprovado"
         return "Reprovado por nota"
+    
 
 def contador_aprovados(alunos: list) -> int:
     soma = 0 
