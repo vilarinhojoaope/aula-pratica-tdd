@@ -61,12 +61,27 @@ def test_media_arredondada_piso():
     aluno = Aluno("Bolsonaro",[1, 1, 2, 1.88] )
     assert aluno.calcular_media_arredondada() == 1
 
-def test_contar_aprovados(aluno_aprovado):
-    lucas = Aluno("Lucas", [6.0, 6.0, 6.0, 6.0]) #aprovado
-    ekko = Aluno("Ekko", [6.0, 5.0, 8.0, 10.0]) #aprovado
-    maria = Aluno("Lucas", [6.0, 1.0, 6.0, 3.0]) #reprovado
+def test_contar_aprovados_todos():
+    maria = Aluno("Maria", [8, 9, 7, 8])   #maprovado
+    ekko  = Aluno("Ekko",  [7, 6, 9, 8])   #aprovado
+    lucas = Aluno("Lucas", [6, 6, 6, 6])   #aprovado
+    alunos = [maria, ekko, lucas]
+    assert contador_aprovados(alunos) == 3
 
-    alunos = [lucas,ekko,maria]
+def test_contar_aprovados_nenhum():
+    joao  = Aluno("João",  [4, 3, 5, 4])   #reprovado
+    pedro = Aluno("Pedro", [2, 3, 1, 4])   #reprovado
+    alunos = [joao, pedro]
+    assert contador_aprovados(alunos) == 0
+
+def test_contar_aprovados_e_reprovados():
+    lucas = Aluno("Lucas", [6.0, 6.0, 6.0, 6.0])  #média 6.0 → aprovado
+    ekko  = Aluno("Ekko",  [6.0, 5.0, 8.0, 10.0]) #média 7.25 → aprovado
+    maria = Aluno("Maria", [6.0, 1.0, 6.0, 3.0])  # média 4.0 → reprovado
+    alunos = [lucas, ekko, maria]
     assert contador_aprovados(alunos) == 2
+
+def test_contar_aprovados_vazio():
+    assert contador_aprovados([]) == 0
  
 
